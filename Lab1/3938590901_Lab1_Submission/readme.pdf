@@ -1,0 +1,28 @@
+Will Bradley  3938590901  wwbradle@usc.edu
+
+Summary of code:
+
+
+
+
+1)
+
+a)
+mkdir backup
+cp * backup
+
+b)
+mv ~ *.h .
+
+c)
+rm -r temp
+
+d)
+ps 
+kill
+
+e)
+i) cat /etc/os-release
+ii) gcc --version or g++ --version
+iii) python --version
+

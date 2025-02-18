@@ -1,0 +1,15 @@
+Public Inheritance: Person: Sofia, Age: 24
+Public Inheritance: Person: Emily, Age: 21
+Public Inheritance: Person: Ava, Age: 23
+Public Inheritance: Person: Ella, Age: 21
+Public Inheritance: Person: Rachel, Age: 20
+Public Inheritance: Person: Lucas, Age: 22
+Public Inheritance: Person: Laura, Age: 18
+Public Inheritance: Person: Daniel, Age: 25
+Public Inheritance: Person: Andrew, Age: 18
+Public Inheritance: Person: Jessica, Age: 23
+Public Inheritance: Person: Sarah, Age: 18
+Public Inheritance: Person: Olivia, Age: 18
+Public Inheritance: Person: David, Age: 24
+Public Inheritance: Person: James, Age: 25
+Public Inheritance: Person: Kevin, Age: 18

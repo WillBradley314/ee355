@@ -1,0 +1,18 @@
+Student: Sofia, Age: 24, ID: 100, GPA: 3.95
+Teacher: Alice, Age: 59, Subject: EE477, Experience: 17 years
+Student: Emily, Age: 21, ID: 107, GPA: 3.71
+Student: Ava, Age: 23, ID: 108, GPA: 3.12
+Student: Ella, Age: 21, ID: 101, GPA: 3.64
+Student: Rachel, Age: 20, ID: 104, GPA: 3.26
+Teacher: Emma, Age: 60, Subject: EE355, Experience: 13 years
+Student: Lucas, Age: 22, ID: 111, GPA: 3.6
+Student: Laura, Age: 18, ID: 105, GPA: 3.53
+Student: Daniel, Age: 25, ID: 113, GPA: 3.35
+Student: Andrew, Age: 18, ID: 109, GPA: 3.52
+Teacher: Liam, Age: 48, Subject: EE595, Experience: 30 years
+Student: Jessica, Age: 23, ID: 106, GPA: 3.41
+Student: Sarah, Age: 18, ID: 114, GPA: 3.04
+Student: Olivia, Age: 18, ID: 102, GPA: 3.47
+Student: David, Age: 24, ID: 110, GPA: 3.1
+Student: James, Age: 25, ID: 103, GPA: 3.39
+Student: Kevin, Age: 18, ID: 112, GPA: 3.67

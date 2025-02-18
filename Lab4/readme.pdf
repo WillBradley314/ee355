@@ -1,0 +1,33 @@
+Will Bradley
+
+wwbradle@usc.edu
+
+3938590901
+
+
+
+Notes:
+
+
+It wasn't clear to me how we were supposed to do several things in this lab, so I will list them here
+to clarify:
+
+Q1.
+I'm not sure what we were supposed to do with the StudentPrivate class besides make a class that inherited
+privately from the person class, since it didn't look like StudentPrivate affected the output at all.  Also,
+since we change the functions in Student after Q1, the output will not be consistent, therefore, I have made
+it so that my code only produces the output for Q2 and Q3 so that it does not override the correct Q1 output.  I 
+would have made new .cpp files for each question, but the directions say not to.  
+
+I felt like the directions for Q1 were too vague this time and I would appreciate more specifics in the future.
+Thanks!
+
+Q3.
+In Q3, I used a vector instead of an array, since I was already storing the pointers in there before.  Also, the
+TA said "The data structure could be the same".  I interpreted that as it's fine to keep using the vector.
+
+
+
+Operation:
+
+Compile and run normally with g++.

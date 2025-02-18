@@ -1,0 +1,19 @@
+18
+Student Sofia 24 100 3.95
+Teacher Alice 59 EE477 17
+Student Emily 21 107 3.71
+Student Ava 23 108 3.12
+Student Ella 21 101 3.64
+Student Rachel 20 104 3.26
+Teacher Emma 60 EE355 13
+Student Lucas 22 111 3.6
+Student Laura 18 105 3.53
+Student Daniel 25 113 3.35
+Student Andrew 18 109 3.52
+Teacher Liam 48 EE595 30
+Student Jessica 23 106 3.41
+Student Sarah 18 114 3.04
+Student Olivia 18 102 3.47
+Student David 24 110 3.1
+Student James 25 103 3.39
+Student Kevin 18 112 3.67

@@ -13,14 +13,10 @@ It wasn't clear to me how we were supposed to do several things in this lab, so 
 to clarify:
 
 Q1.
-I'm not sure what we were supposed to do with the StudentPrivate class besides make a class that inherited
-privately from the person class, since it didn't look like StudentPrivate affected the output at all.  Also,
-since we change the functions in Student after Q1, the output will not be consistent, therefore, I have made
-it so that my code only produces the output for Q2 and Q3 so that it does not override the correct Q1 output.  I 
-would have made new .cpp files for each question, but the directions say not to.  
-
-I felt like the directions for Q1 were too vague this time and I would appreciate more specifics in the future.
-Thanks!
+I wasn't sure how we were supposed to do the private part of Q1, so I made another vector of type Person pointers
+and added objects of type StudentPrivate to it. This doesn't work bc of private inheritance, but I think that is
+the goal.  I also called displayPersonInfo() on that, but I commented both of these out because if I leave them the
+code won't work right.  
 
 Q3.
 In Q3, I used a vector instead of an array, since I was already storing the pointers in there before.  Also, the

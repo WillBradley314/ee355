@@ -1,0 +1,9 @@
+Original Array: 3 8 5 10 7 2 
+
+Modified Array:
+  - Doubled even numbers & Squared odd numbers: 9 16 25 20 49 4 
+
+Max Value: 49
+Min Value: 4
+
+Prefix Sum Array: 9 25 50 70 119 123 

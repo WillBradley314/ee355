@@ -7,11 +7,10 @@ using namespace std;
 int f_rec(int n);
 
 
-int main() {
-    int input;
+int main(int argc, char* argv[]) {
+    int input = stoi(argv[1]);
     int f = 0;
     int i = 0;
-    cin >> input;
 
     while (input > f) {
         f = f_rec(i);

@@ -1,0 +1,77 @@
+Will Bradley
+
+wwbradle@usc.edu
+
+3938590901
+
+
+Notes:
+
+Nothing to comment, all working.
+
+
+Operation:
+
+Compile .cpp normally with g++, run python script with python3
+To run:
+    
+    ./fibonacci_recursive.out <number>
+
+    ./fibonacci_dp.out <number>
+
+    python3 fibonacci.py <number>
+
+    ./brokengdb1_correct.out
+    Enter number to factorial
+
+    ./broken_ASan_correct.out
+
+
+
+GDB Part
+
+
+    First time running, received the following error:
+
+        Program received signal SIGSEGV, Segmentation fault.
+        0x00005555555552ab in factorial (n=3) at brokengdb1_correct.cpp:22
+        22	        return  factorial(n--)*n;
+
+    Looking at line 22, I decided this was probably due to the function 
+    argument of n-- instead of n-1.  This is because n-- evaluates to n, 
+    so the recursion would not progress and it would cause a stack 
+    overflow from all the function calls, causing the SIGSEGV error.  
+    After replacing n-- with n-1, it seems to work normally, and gave the 
+    following output:
+
+        Please enter n:
+        4
+        n factorial is: 24
+        [Inferior 1 (process 4949) exited normally]
+
+
+
+ASAN Part
+
+    First time running, received the following error:
+
+        SUMMARY: AddressSanitizer: stack-buffer-overflow /home/will-bradley/ee355-new/Lab6
+        /broken_ASan_correct.cpp:5 in partition(int*, int, int)
+
+    Looking at line 5, I noticed that the program was trying to assign the pivot to arr[high], 
+    which does not exist because high is the length of the array, so I changed high to n-1 in
+    the function call.  Then I recompiled and reran:
+
+        SUMMARY: AddressSanitizer: stack-buffer-overflow /home/will-bradley/ee355-new/Lab6
+        /broken_ASan_correct.cpp:41 in printArray(int*, int)
+
+    Looking at line 41, we can clearly see that the for loop is configured to go beyond the
+    size of the array, so I changed the i <= size to i < size.  Then I recompiled and reran
+    and the list was properly sorted.  I noticed the output was printing "n", so I assumed
+    that was a mistake and that it meant to make a new line and therefore changed it to "\n".
+
+
+
+
+
+

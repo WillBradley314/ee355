@@ -6,9 +6,6 @@ n = sys.argv[1]
 subprocess.run(["g++", "fibonacci_dp.cpp", "-o", "fibonacci_dp.out"])
 direct_output = subprocess.run(["./fibonacci_dp.out", n], stdout=subprocess.PIPE)
 
-
-
-
 string_Output = direct_output.stdout.decode('utf-8').strip().splitlines()
 fStatus = int(string_Output[0])
 

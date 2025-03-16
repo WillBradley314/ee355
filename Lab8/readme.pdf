@@ -1,0 +1,19 @@
+Will Bradley
+
+wwbradle@usc.edu
+
+3938590901
+
+
+Notes:
+
+Nothing to comment, all working.
+
+
+Operation:
+
+Compile .cpp using c++11 with g++:
+    g++ -std=c++11 lab8.cpp lodepng.cpp -o lab8.o
+
+To run:
+    ./lab8.o <yourFile.png>

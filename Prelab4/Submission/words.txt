@@ -1,0 +1,4 @@
+The day is sunny the the the Sunny is is
+A quick brown fox jumps over the lazy dog
+An example sentence is provided to test the word frequency
+quick Quick FOX fox

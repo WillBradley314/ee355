@@ -1,0 +1,66 @@
+Part 1.
+
+    .          Any character except new line
+    ^          Beginning of line
+    $          End of line
+    A          Matches 'A'
+    a          Matches 'a'
+    \d         Is a digit
+    \D         Is not a digit
+    \w         is a word character
+    [A-E]      Matches any uppercase letter from A-E
+    [^A-E]     Does not match any uppercase letter from A-E
+    X?         There are 0 or 1 instances of 'X'
+    X*         There are 0 or more instances of 'X'
+    X+         There are 1 or more instances of 'X'
+    X{n}       There are n instances of 'X'
+    X{n,m}     There are between n and m instances of 'X'
+    (abc|def)+ There are 1 or more instances of 'abc' or 'def'
+    abc(def)   Matches "abcdef"
+
+    [[:alpha:]]   Matches alphabetical characters
+    [[:alnum:]]   Matches alphanumeric characters
+    [[:blank:]]   Matches blank characters
+    [[:digit:]]   Matches digits
+    [[:lower:]]   Matches lowercase letters
+    [[:print:]]   Matches printable characters
+    [[:punct:]]   Matches punctuation
+    [[:space:]]   Matches whitespace
+    [[:upper:]]   Matches uppercase letters
+    [[:cntrl:]]   Matches control characters
+    [[:graph:]]   Matches visible characters (no whitespace)
+    [[:xdigit:]]  Hexadecimal digits
+
+    1. $ ls -l | grep ^-
+        This command checks if '-' appears at the beginning of 
+        any line in the output from the command  ls -l  and 
+        prints the line.  This results in showing the 'regular
+        files' in the current directory.
+    2. $ ls -l | grep ^d 
+        This command checks if 'd' appears at the beginning of
+        any line in the output from the command  ls -l  and 
+        prints the line.  This results in showing all directories
+        in the current directory.
+    3. $ ls -l | grep js$
+        This command checks if each line from the output of 
+        the command  ls -l  ends in js and prints those lines.
+        This results in showing the javascript files in the
+        current directory.
+    4. $ ls -l | grep 'so*t'
+        This command checks if each line from the output of 
+        the command  ls -l  begins with 's', has 0 or more 
+        instances of 'o', and ends in 't' and prints those
+        lines.
+    5. $ grep '^$' filename
+        This command checks if each line from the file 
+        'filename' matches with the beginning of a line
+        immediately followed by the end of a line and prints
+        these lines.  This results in locating blank lines
+        in 'filename' and printing them.
+
+    1. $ echo "Test with this" | awk'/[^i]th/{print $0}'
+        Test with this
+    2. $ echo "Test with this" | awk'/[^i]th/{print $0}'
+        Test with this
+
+

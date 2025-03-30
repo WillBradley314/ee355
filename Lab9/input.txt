@@ -1,0 +1,15 @@
+14
+addFirst 10
+append 20
+append 30
+display
+insert 15 2
+display
+search 20
+delete 20
+display
+pop
+display
+search 20
+pop
+display

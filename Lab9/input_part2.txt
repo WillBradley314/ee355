@@ -1,0 +1,11 @@
+10
+display
+addFirst 10
+append 20
+display
+insert 15 1
+display
+search 20
+deleteAtIndex 1
+display
+isCircular

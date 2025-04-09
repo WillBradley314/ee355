@@ -37,26 +37,13 @@ Date::Date(string date) {
 
 }
 
-void Date::print_date() {
+void Date::print_date(string format) {
 
-    vector<string> months = {"January", "February", "March", "April", "May", 
-    "June", "July", "August", "September", "October", "November", "December"};
+    if (format == "Month D, YYYY") {
+        vector<string> months = {"January", "February", "March", "April", "May", 
+        "June", "July", "August", "September", "October", "November", "December"};
 
-    cout << months[month-1] << " " << day << ", " << year << endl;
+        cout << months[month-1] << " " << day << ", " << year << endl;
+    }
 }
 
-int main() {
-    string inDate;
-    
-    cout << "Enter date: ";
-    cin >> inDate;
-
-    Date* birthday = new Date(inDate);
-
-    birthday->print_date();
-
-
-
-
-    return 0;
-}

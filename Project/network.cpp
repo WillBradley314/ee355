@@ -122,6 +122,24 @@ void Network::loadDB(string filename){
 
 void Network::saveDB(string filename){
     // TODO: Complete this method
+    ofstream fout(filename);
+    if (!fout.is_open()) {
+        cerr << "Unable to open " << filename << "." << endl;
+    }
+    else {
+        temp = head;
+        while (temp != tail) {
+            fout << temp->f_name << endl;
+            fout << temp->l_name << endl;
+            fout << temp->birthdate->get_dateString() << endl;
+            fout << temp->email->get_contact() << endl;
+            fout << temp->phone->get_contact() << endl;
+            fout << "--------------------" << endl;
+            temp = temp->next;
+        }
+        fout.close();
+    }
+
 }
 
 
@@ -247,6 +265,8 @@ void Network::showMenu(){
             // TODO: Complete me!
             cout << "Saving network database \n";
             cout << "Enter the name of the save file: ";
+            cin >> fileName;
+            saveDB(fileName);
             // Save the network database into the file with the given name,
             // with each person saved in the format the save as printing out the person info,
             // and people are delimited similar to "networkDB.txt" format

@@ -10,6 +10,7 @@ class Date {
 public:
     Date(string date);
     void print_date(string format);
+    string get_dateString();
 };
 
 

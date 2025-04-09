@@ -47,3 +47,6 @@ void Date::print_date(string format) {
     }
 }
 
+string Date::get_dateString() {
+    return (to_string(month) + "/" + to_string(day) + "/" + to_string(year));
+}

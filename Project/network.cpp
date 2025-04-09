@@ -4,6 +4,10 @@
 #include "misc.h"
 #include <fstream>
 #include "person.h"
+#include <filesystem>
+#include <vector>
+
+namespace fs = std::filesystem;
 
 Network::Network(){
     head = NULL;
@@ -21,7 +25,11 @@ Network::Network(string fileName){
 }
 
 Network::~Network(){
-    
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
 }
 
 // Person* Network::search(Person* searchEntry){
@@ -69,16 +77,34 @@ void Network::loadDB(string filename){
             std::getline(fin,dateString);
             currNode->birthdate = new Date(dateString);
 
+
             i = 1;
-            type = "";
             tempString = "";
+            type = "";
             std::getline(fin, readString);
-            while (i < tempString.size() && readString[i] != ')') {
+            while (i < readString.size() && readString[i] != ')') {
                 type += readString[i];
                 i++;
             }
             i++;
-            while (i < tempString.size()) {
+            while (i < readString.size()) {
+                if (readString[i] != ' ') {
+                    tempString += readString[i];
+                }
+                i++;
+            }
+            currNode->email = new Email(type, tempString);
+
+            i = 1;
+            type = "";
+            tempString = "";
+            std::getline(fin, readString);
+            while (i < readString.size() && readString[i] != ')') {
+                type += readString[i];
+                i++;
+            }
+            i++;
+            while (i < readString.size()) {
                 if (isdigit(readString[i])) {
                     tempString += readString[i];
                 }
@@ -86,23 +112,6 @@ void Network::loadDB(string filename){
             }
             currNode->phone = new Phone(type, tempString);
 
-            i = 1;
-            tempString = "";
-            type = "";
-
-            std::getline(fin, readString);
-            while (i < tempString.size() && readString[i] != ')') {
-                type += readString[i];
-                i++;
-            }
-            i++;
-            while (i < tempString.size()) {
-                if (readString[i] != ' ') {
-                    tempString += readString[i];
-                }
-                i++;
-            }
-            currNode->email = new Email(type, tempString);
             push_front(currNode);
             std::getline(fin, readString); // skips dashes;
         }
@@ -168,6 +177,40 @@ void Network::push_back(Person* newEntry){
 // }
 
 
+void listFiles() {
+    cout << "Networks:" << endl;
+    for (const auto& file: fs::directory_iterator(".")) {
+        string name = file.path().filename().string();
+        vector<string> lines;
+        if (name.size() > 5 && name.substr(name.size()-4) == ".txt") {
+            string line;
+            int nDash(0);
+            ifstream fin(name);
+            if (fin.is_open()) {
+                while(std::getline(fin, line)) {
+                    lines.push_back(line);
+                    if(line == "--------------------") {
+                        nDash++;
+                    }
+                }
+                if (lines.size()/6 == nDash  && nDash) {
+                    cout << name << endl;
+                }
+
+                fin.close(); 
+            }
+
+            
+
+
+
+        }
+
+    }
+
+}
+
+
 void Network::showMenu(){
     // TODO: Complete this method!
     // All the prompts are given to you, 
@@ -215,14 +258,21 @@ void Network::showMenu(){
             // TODO: print all the files in this same directory that have "networkDB.txt" format
             // print format: one filename one line.
             // This step just shows all the available .txt file to load.
+            listFiles();
             cout << "Enter the name of the load file: "; 
-            // If file with name FILENAME does not exist: 
-            cout << "File FILENAME does not exist!" << endl;
+            cin >> fileName;
+            // If file with name FILENAME does not exist:
+            while (!fs::exists(fileName)) { 
+                cout << "File " << fileName << " does not exist!" << endl;
+                cout << "Enter the correct name of the load file: "; 
+                cin >> fileName;
+            }
 
-            loadDB("networkDB.txt");
+            loadDB(fileName);
 
             // If file is loaded successfully, also print the count of people in it: 
             cout << "Network loaded from " << fileName << " with " << count << " people \n";
+            printDB();
         }
         else if (opt == 3){
             // TODO: Complete me!

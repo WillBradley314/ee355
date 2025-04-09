@@ -128,7 +128,7 @@ void Network::saveDB(string filename){
     }
     else {
         temp = head;
-        while (temp != tail) {
+        while (temp != NULL) {
             fout << temp->f_name << endl;
             fout << temp->l_name << endl;
             fout << temp->birthdate->get_dateString() << endl;

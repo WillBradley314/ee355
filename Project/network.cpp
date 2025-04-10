@@ -32,19 +32,23 @@ Network::~Network(){
     }
 }
 
-// Person* Network::search(Person* searchEntry){
-//     // Searches the Network for searchEntry
-//     // if found, returns a pointer to it, else returns NULL
-//     // TODO: Complete this method
-// }
 
 
-// Person* Network::search(string fname, string lname){
-//     // New == for Person, only based on fname and lname
-//     // if found, returns a pointer to it, else returns NULL
-//     // TODO: Complete this method
-//     // Note: two ways to implement this, 1st making a new Person with fname and lname and and using search(Person*), 2nd using fname and lname directly. 
-// }
+Person* Network::search(string fname, string lname){
+    // New == for Person, only based on fname and lname
+    temp = head;
+    // if found, returns a pointer to it, else returns NULL
+    while (temp != NULL) {
+        if (temp->f_name == fname && temp->l_name == lname) {
+            return temp;
+            break;
+        }
+        temp = temp->next;
+    }
+    // TODO: Complete this method
+    // Note: two ways to implement this, 1st making a new Person with fname and lname and and using search(Person*), 2nd using fname and lname directly. 
+    return NULL;
+}
 
 
 
@@ -189,10 +193,28 @@ void Network::push_back(Person* newEntry){
 }
 
 
-// bool Network::remove(string fname, string lname){
-//     // TODO: Complete this method
- 
-// }
+bool Network::remove(string fname, string lname){
+    // TODO: Complete this method
+    Person* rm = search(fname, lname);
+    if (rm == NULL) {
+        return false;
+    }
+    if (rm == head) {
+        head = rm->next;
+        head->prev = NULL;
+    }
+    else if (rm == tail) {
+        tail = rm->prev;
+        tail->next = NULL;
+    }
+    else {
+        rm->prev->next = rm->next;
+        rm->next->prev = rm->prev;
+    }
+    count--;
+    delete rm;
+    return true;
+}
 
 
 void listFiles() {
@@ -214,14 +236,8 @@ void listFiles() {
                 if (lines.size()/6 == nDash  && nDash) {
                     cout << name << endl;
                 }
-
                 fin.close(); 
             }
-
-            
-
-
-
         }
 
     }
@@ -298,15 +314,25 @@ void Network::showMenu(){
             // TODO: Complete me!
             // TODO: use push_front, and not push_back 
             // Add a new Person ONLY if it does not exists!
+            Person* newPerson = new Person;
+            remove(newPerson->f_name, newPerson->l_name);
+            push_front(newPerson);
             cout << "Adding a new person \n";
         }
         else if (opt == 4){
             // TODO: Complete me!
-            // if found, cout << "Remove Successful! \n";
-            // if not found: cout << "Person not found! \n";
             cout << "Removing a person \n";
-            cout << "First name: ";
-            cout << "Last name: ";
+            cout << "First name: " << endl;
+            getline(cin, fname);
+            cout << "Last name: " << endl;
+            getline(cin, lname);
+            if (remove(fname, lname)) {
+                cout << "Remove Successful! \n";
+            }
+            else {
+                cout << "Person not found! \n";
+            }
+
         }
         else if (opt==5){
             // TODO: Complete me!

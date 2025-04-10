@@ -216,6 +216,23 @@ bool Network::remove(string fname, string lname){
     return true;
 }
 
+void Network::printNames(string lname) {
+    temp = head;
+    bool found = false;
+    while (temp != NULL) {
+        if (temp->l_name == lname) {
+            temp->print_person();
+            cout << "--------------------" << endl;
+            found = true;
+        }
+        temp = temp->next;
+    }
+    if (!found) {
+        cout << "Not found." << endl;
+    }
+
+}
+
 
 void listFiles() {
     cout << "Networks:" << endl;
@@ -337,9 +354,10 @@ void Network::showMenu(){
         else if (opt==5){
             // TODO: Complete me!
             // print the people with the given last name
-            // if not found: cout << "Person not found! \n";
-            cout << "Print people with last name \n";
             cout << "Last name: ";
+            getline(cin, lname);
+            cout << "Print people with last name \n";
+            printNames(lname);
         }
         
         else

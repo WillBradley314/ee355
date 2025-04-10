@@ -23,7 +23,7 @@ void Email::set_contact(){
 string Email::get_contact(string style){
     // Note: We have default argument in declaration and not in definition!
     if (style=="full")
-	    return "Email (" + type + "): " + email_addr;
+	    return "(" + type + ") " + email_addr;
     else 
         return email_addr;
 }
@@ -31,7 +31,7 @@ string Email::get_contact(string style){
 
 void Email::print(){
     // Note: get_contact is called with default argument
-	cout << get_contact() << endl;
+	cout << "Email " << get_contact() << endl;
 }
 
 
@@ -71,7 +71,7 @@ void Phone::set_contact(){
 string Phone::get_contact(string style){
     // Complete this method, get hint from Email 
     if (style=="full")
-	    return "Phone (" + type + "): " + phone_num;
+	    return "(" + type + ") " + phone_num;
     else 
         return phone_num;
 }
@@ -79,6 +79,6 @@ string Phone::get_contact(string style){
 
 void Phone::print(){
     // Note: get_contact is called with default argument
-	cout << get_contact() << endl;
+	cout << "Phone " << get_contact() << endl;
 }
 

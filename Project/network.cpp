@@ -50,6 +50,17 @@ Person* Network::search(string fname, string lname){
     return NULL;
 }
 
+Person* Network::search(Person* searchEntry) {
+    temp = head;
+    while (temp != NULL) {
+        if (temp->operator==(*searchEntry)) {
+            return temp;
+            break;
+        }
+        temp = temp->next;
+    }
+    return NULL;
+}
 
 
 
@@ -68,53 +79,65 @@ void Network::loadDB(string filename){
         head = NULL;
         tail = head;
         count = 0;
-        string readString, f_name, l_name, dateString, tempString, type;
+        string readString, f_name, l_name, dateString, tempString, etype, ptype, phone, email;
         int i;
 
 
         while (std::getline(fin,f_name)) {
-            Person* currNode = new Person("Default", "Default", "1/1/1111", "Default", "Default");
             
-            currNode->f_name = f_name;
-            std::getline(fin, currNode->l_name);
+            //Person* currNode = new Person("Default", "Default", "1/1/1111", "Default@Email.com", "000-000-0000");
             
-            std::getline(fin,dateString);
-            currNode->birthdate = new Date(dateString);
+            
+            //currNode->f_name = f_name;
+            //std::getline(fin, currNode->l_name);
+            
+            //std::getline(fin,dateString);
+            //currNode->birthdate = new Date(dateString);
 
 
-            i = 1;
-            tempString = "";
-            type = "";
-            std::getline(fin, readString);
-            while (i < readString.size() && readString[i] != ')') {
-                type += readString[i];
-                i++;
-            }
-            i++;
-            while (i < readString.size()) {
-                if (readString[i] != ' ') {
-                    tempString += readString[i];
-                }
-                i++;
-            }
-            currNode->email = new Email(type, tempString);
+            std::getline(fin, l_name);
+            std::getline(fin, dateString);
+            std::getline(fin, email);
+            std::getline(fin, phone);
 
-            i = 1;
-            type = "";
-            tempString = "";
-            std::getline(fin, readString);
-            while (i < readString.size() && readString[i] != ')') {
-                type += readString[i];
-                i++;
-            }
-            i++;
-            while (i < readString.size()) {
-                if (isdigit(readString[i])) {
-                    tempString += readString[i];
-                }
-                i++;
-            }
-            currNode->phone = new Phone(type, tempString);
+            
+
+            // i = 1;
+            // email = "";
+            // etype = "";
+            // std::getline(fin, readString);
+            // while (i < readString.size() && readString[i] != ')') {
+            //     etype += readString[i];
+            //     i++;
+            // }
+            // i++;
+            // while (i < readString.size()) {
+            //     if (readString[i] != ' ') {
+            //         email += readString[i];
+            //     }
+            //     i++;
+            // }
+            // //currNode->email = new Email(type, tempString);
+
+            // i = 1;
+            // ptype = "";
+            // phone = "";
+            // std::getline(fin, readString);
+            // while (i < readString.size() && readString[i] != ')') {
+            //     ptype += readString[i];
+            //     i++;
+            // }
+            // i++;
+            // while (i < readString.size()) {
+            //     if (isdigit(readString[i])) {
+            //         phone += readString[i];
+            //     }
+            //     i++;
+            // }
+            // //currNode->phone = new Phone(type, tempString);
+
+            Person* currNode = new Person(f_name, l_name, dateString, email, phone);
+
 
             push_front(currNode);
             std::getline(fin, readString); // skips dashes;
@@ -325,7 +348,6 @@ void Network::showMenu(){
 
             // If file is loaded successfully, also print the count of people in it: 
             cout << "Network loaded from " << fileName << " with " << count << " people \n";
-            printDB();
         }
         else if (opt == 3){
             // TODO: Complete me!

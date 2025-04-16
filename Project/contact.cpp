@@ -39,15 +39,33 @@ Phone::Phone(string type, string num){
     // It is possible that num includes "-" or not, manage it!
     // Complete this method!
     // Note: We don't want to use C++11! stol is not valid!
-
     this->type = type;
+    string digits = "";
     
     for (int i = 0; i < num.length(); i++) {
-        if ((i == 3 && num[3] != '-') || (i == 7 && num[7] != '-')) {
-            phone_num += '-';
+        if (num[i] != '-') {
+            digits += num[i];
         }
-        phone_num += num[i];
     }
+
+
+
+    if (digits.length() == 10) {
+        this->phone_num = digits.substr(0, 3) + '-' + digits.substr(3,3) + '-' + digits.substr(6, 4);
+    }
+    else {
+        cerr << "invalid phone number" << endl;
+    }
+    
+
+
+
+    // for (int i = 0; i < num.length(); i++) {
+    //     if ((i == 3 && num[3] != '-') || (i == 6 && num[6] != '-')) {
+    //         phone_num += '-';
+    //     }
+    //     phone_num += num[i];
+    // }
 }
 
 
@@ -60,7 +78,7 @@ void Phone::set_contact(){
 	cout << "Enter the phone number: ";
     cin >> num;
     for (int i = 0; i < num.length(); i++) {
-        if ((i == 3 && num[3] != '-') || (i == 7 && num[7] != '-')) {
+        if ((i == 3 && num[3] != '-') || (i == 6 && num[6] != '-')) {
             phone_num += '-';
         }
         phone_num += num[i];

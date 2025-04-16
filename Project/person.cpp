@@ -29,27 +29,39 @@ Person::Person(string f_name, string l_name, string b_date, string email, string
     this->l_name = l_name;
     this->birthdate = new Date(b_date);
     
-    while (email[i] != ')' && email[i] != '\0') {
+    while (email[i] != ')' && i < email.size()) {
         type += email[i];
         i++;
     }
+    i++;
+    
+    
+    // if (email[i] != ')' && i < email.size()) {i++;}
+    // while(email[i] != ' ' && i < email.size()) {i++;}
+    // tempString = email.substr(i);
+
     while (email[i] != '\0') {
         if (email[i] != ' ') {
             tempString += email[i];
         }
         i++;
     }
-    this->email = new Email(type, tempString); // fix separate into type and email
+    this->email = new Email(type, tempString);
 
     i = 1;
     tempString = "";
     type = "";
 
-    while (phone[i] != ')' && email[i] != '\0') {
+    while (phone[i] != ')' && phone[i] != '\0') {
         type += phone[i];
         i++;
     }
     i++;
+
+    // if (phone[i] != ')' && i < phone.size()) {i++;}
+    // while(phone[i] != ' ' && i < phone.size()) {i++;}
+    // tempString = phone.substr(i);
+
     while (phone[i] != '\0') {
         if (phone[i] != ' ') {
             tempString += phone[i];
@@ -168,17 +180,13 @@ bool Person::operator==(const Person& rhs){
     // TODO: Complete this method!
     // Note: you should check first name, last name and birthday between two persons
     // refer to bool Date::operator==(const Date& rhs)
-    if (this->f_name == rhs.f_name && this->l_name == rhs.l_name && this->birthdate == rhs.birthdate) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return (this->f_name == rhs.f_name && this->l_name == rhs.l_name 
+    && this->birthdate == rhs.birthdate);
 }
 
 bool Person::operator!=(const Person& rhs){ 
     // TODO: Complete this method!
-    return !(*this == rhs);
+    return !(this->operator==(rhs));
 }
 
 

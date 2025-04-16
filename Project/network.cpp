@@ -18,7 +18,6 @@ Network::Network(){
 
 
 Network::Network(string fileName){
-    // TODO: complete this method!
     // Implement it in one single line!
     // You may need to implement the load method before this!
     this->loadDB(fileName);
@@ -45,8 +44,6 @@ Person* Network::search(string fname, string lname){
         }
         temp = temp->next;
     }
-    // TODO: Complete this method
-    // Note: two ways to implement this, 1st making a new Person with fname and lname and and using search(Person*), 2nd using fname and lname directly. 
     return NULL;
 }
 
@@ -65,7 +62,6 @@ Person* Network::search(Person* searchEntry) {
 
 
 void Network::loadDB(string filename){
-    // TODO: Complete this method
     ifstream fin(filename);
     if (!fin.is_open()) {
         cerr << "Unable to open " << filename << "." << endl;
@@ -79,65 +75,17 @@ void Network::loadDB(string filename){
         head = NULL;
         tail = head;
         count = 0;
-        string readString, f_name, l_name, dateString, tempString, etype, ptype, phone, email;
+        string readString, f_name, l_name, dateString, etype, ptype, phone, email;
         int i;
 
 
         while (std::getline(fin,f_name)) {
-            
-            //Person* currNode = new Person("Default", "Default", "1/1/1111", "Default@Email.com", "000-000-0000");
-            
-            
-            //currNode->f_name = f_name;
-            //std::getline(fin, currNode->l_name);
-            
-            //std::getline(fin,dateString);
-            //currNode->birthdate = new Date(dateString);
-
-
             std::getline(fin, l_name);
             std::getline(fin, dateString);
             std::getline(fin, email);
             std::getline(fin, phone);
-
-            
-
-            // i = 1;
-            // email = "";
-            // etype = "";
-            // std::getline(fin, readString);
-            // while (i < readString.size() && readString[i] != ')') {
-            //     etype += readString[i];
-            //     i++;
-            // }
-            // i++;
-            // while (i < readString.size()) {
-            //     if (readString[i] != ' ') {
-            //         email += readString[i];
-            //     }
-            //     i++;
-            // }
-            // //currNode->email = new Email(type, tempString);
-
-            // i = 1;
-            // ptype = "";
-            // phone = "";
-            // std::getline(fin, readString);
-            // while (i < readString.size() && readString[i] != ')') {
-            //     ptype += readString[i];
-            //     i++;
-            // }
-            // i++;
-            // while (i < readString.size()) {
-            //     if (isdigit(readString[i])) {
-            //         phone += readString[i];
-            //     }
-            //     i++;
-            // }
-            // //currNode->phone = new Phone(type, tempString);
-
+      
             Person* currNode = new Person(f_name, l_name, dateString, email, phone);
-
 
             push_front(currNode);
             std::getline(fin, readString); // skips dashes;
@@ -148,7 +96,6 @@ void Network::loadDB(string filename){
 }
 
 void Network::saveDB(string filename){
-    // TODO: Complete this method
     ofstream fout(filename);
     if (!fout.is_open()) {
         cerr << "Unable to open " << filename << "." << endl;
@@ -202,7 +149,6 @@ void Network::push_front(Person* newEntry){
 
 void Network::push_back(Person* newEntry){
     // Adds a new Person (newEntry) to the back of LL
-    // TODO: Complete this method
     newEntry->next = NULL;
     newEntry->prev = tail;
 
@@ -217,7 +163,6 @@ void Network::push_back(Person* newEntry){
 
 
 bool Network::remove(string fname, string lname){
-    // TODO: Complete this method
     Person* rm = search(fname, lname);
     if (rm == NULL) {
         return false;
@@ -286,7 +231,6 @@ void listFiles() {
 
 
 void Network::showMenu(){
-    // TODO: Complete this method!
     // All the prompts are given to you, 
     // You should add code before, between and after prompts!
 

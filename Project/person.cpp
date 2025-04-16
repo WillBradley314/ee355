@@ -5,7 +5,6 @@
 #include "date.h"
 
 Person::Person(){
-    // I'm already done! 
     set_person();
 }
 
@@ -14,13 +13,10 @@ Person::~Person(){
     delete birthdate;
     delete email;
     delete phone;
-    // TODO: complete the method!
 }
 
 
 Person::Person(string f_name, string l_name, string b_date, string email, string phone){
-    // Complete this method!
-    // phone and email strings are in full version
 
     string type, tempString;
     int i = 1;
@@ -34,12 +30,6 @@ Person::Person(string f_name, string l_name, string b_date, string email, string
         i++;
     }
     i++;
-    
-    
-    // if (email[i] != ')' && i < email.size()) {i++;}
-    // while(email[i] != ' ' && i < email.size()) {i++;}
-    // tempString = email.substr(i);
-
     while (email[i] != '\0') {
         if (email[i] != ' ') {
             tempString += email[i];
@@ -57,11 +47,6 @@ Person::Person(string f_name, string l_name, string b_date, string email, string
         i++;
     }
     i++;
-
-    // if (phone[i] != ')' && i < phone.size()) {i++;}
-    // while(phone[i] != ' ' && i < phone.size()) {i++;}
-    // tempString = phone.substr(i);
-
     while (phone[i] != '\0') {
         if (phone[i] != ' ') {
             tempString += phone[i];
@@ -82,13 +67,11 @@ void Person::set_person(){
     // first/last name can have spaces!
     // date format must be "M/D/YYYY"
     // We are sure user enters info in correct format.
-    // complete this method!
     
     string temp;
     string type;
 
     cout << "First Name: ";
-    // pay attention to how we read first name, as it can have spaces!
     std::getline(std::cin,f_name);
 
 	cout << "Last Name: ";
@@ -96,24 +79,18 @@ void Person::set_person(){
 
     cout << "Birthdate (M/D/YYYY): ";
     std::getline(std::cin,temp);
-    // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
     birthdate = new Date(temp); 
 
     cout << "Type of email address: ";
-    // code here
     cin >> type;
     cout << "Email address: ";
-    // code here
     cin >> temp;
     email = new Email (type, temp);
 
     cout << "Type of phone number: ";
-    // code here
     cin >> type;
     cout << "Phone number: ";
-    // code 
     cin >> temp;
-    // code here
     phone = new Phone (type, temp);
 }
 
@@ -169,23 +146,15 @@ void Person::set_person(string filename){
 
         fin.close();
     }
-    // reads a Person from a file
-    // Look at person_template files as examples.     
-    // Phone number in files can have '-' or not.
-    // TODO: Complete this method!
 }
 
 
 bool Person::operator==(const Person& rhs){
-    // TODO: Complete this method!
-    // Note: you should check first name, last name and birthday between two persons
-    // refer to bool Date::operator==(const Date& rhs)
     return (this->f_name == rhs.f_name && this->l_name == rhs.l_name 
     && this->birthdate == rhs.birthdate);
 }
 
 bool Person::operator!=(const Person& rhs){ 
-    // TODO: Complete this method!
     return !(this->operator==(rhs));
 }
 

@@ -48,8 +48,6 @@ Phone::Phone(string type, string num){
         }
     }
 
-
-
     if (digits.length() == 10) {
         this->phone_num = digits.substr(0, 3) + '-' + digits.substr(3,3) + '-' + digits.substr(6, 4);
     }
@@ -57,15 +55,6 @@ Phone::Phone(string type, string num){
         cerr << "invalid phone number" << endl;
     }
     
-
-
-
-    // for (int i = 0; i < num.length(); i++) {
-    //     if ((i == 3 && num[3] != '-') || (i == 6 && num[6] != '-')) {
-    //         phone_num += '-';
-    //     }
-    //     phone_num += num[i];
-    // }
 }
 
 
@@ -81,7 +70,7 @@ void Phone::set_contact(){
         if ((i == 3 && num[3] != '-') || (i == 6 && num[6] != '-')) {
             phone_num += '-';
         }
-        phone_num += num[i];
+        phone_num += num[i]; // fix later
     }
 }
 

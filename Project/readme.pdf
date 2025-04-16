@@ -44,9 +44,8 @@ Implementation:
 
         loadDB()
             First I use a DLL destructor (similar to lab 9) to clear the current network.
-            Then I essentially used the same method as the person constructor, but in a loop
-            and skipped the dashed line using getline() and push_front() to add each person
-            to the DLL.
+            Then I read in each line and call the person constructor, in a loop and skip
+            the dashed line using getline() and push_front() to add each person to the DLL.
 
         saveDB()
             In this function, I open the desired file and print the each element of the DLL 

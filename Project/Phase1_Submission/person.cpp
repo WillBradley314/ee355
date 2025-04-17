@@ -1,0 +1,168 @@
+#include <fstream>
+#include <cctype>
+#include "person.h"
+#include "contact.h"
+#include "date.h"
+
+Person::Person(){
+    set_person();
+}
+
+
+Person::~Person(){
+    delete birthdate;
+    delete email;
+    delete phone;
+}
+
+
+Person::Person(string f_name, string l_name, string b_date, string email, string phone){
+
+    string type, tempString;
+    int i = 1;
+
+    this->f_name = f_name;
+    this->l_name = l_name;
+    this->birthdate = new Date(b_date);
+    
+    while (email[i] != ')' && i < email.size()) {
+        type += email[i];
+        i++;
+    }
+    i++;
+    while (email[i] != '\0') {
+        if (email[i] != ' ') {
+            tempString += email[i];
+        }
+        i++;
+    }
+    this->email = new Email(type, tempString);
+
+    i = 1;
+    tempString = "";
+    type = "";
+
+    while (phone[i] != ')' && phone[i] != '\0') {
+        type += phone[i];
+        i++;
+    }
+    i++;
+    while (phone[i] != '\0') {
+        if (phone[i] != ' ') {
+            tempString += phone[i];
+        }
+        i++;
+    }
+    this->phone = new Phone(type, tempString);
+}
+
+
+Person::Person(string filename){
+    set_person(filename);
+}
+
+
+void Person::set_person(){
+    // prompts for the information of the user from the terminal
+    // first/last name can have spaces!
+    // date format must be "M/D/YYYY"
+    // We are sure user enters info in correct format.
+    
+    string temp;
+    string type;
+
+    cout << "First Name: ";
+    std::getline(std::cin,f_name);
+
+	cout << "Last Name: ";
+    std::getline(std::cin,l_name);
+
+    cout << "Birthdate (M/D/YYYY): ";
+    std::getline(std::cin,temp);
+    birthdate = new Date(temp); 
+
+    cout << "Type of email address: ";
+    cin >> type;
+    cout << "Email address: ";
+    cin >> temp;
+    email = new Email (type, temp);
+
+    cout << "Type of phone number: ";
+    cin >> type;
+    cout << "Phone number: ";
+    cin >> temp;
+    phone = new Phone (type, temp);
+}
+
+
+void Person::set_person(string filename){
+    ifstream fin;
+    fin.open(filename);
+    if (!fin.is_open()) {
+        cerr << "Unable to open " << filename << "." << endl;
+    }
+    else {
+        string dateString, readString, tempString, type;
+        int i = 1;
+        
+        std::getline(fin,f_name);
+        std::getline(fin,l_name);
+        
+        std::getline(fin,dateString);
+        birthdate = new Date(dateString);
+
+        std::getline(fin, readString);
+        while (readString[i] != ')') {
+            type += readString[i];
+            i++;
+        }
+        i++;
+        while (readString[i] != '\0') {
+            if (isdigit(readString[i])) {
+                tempString += readString[i];
+            }
+            i++;
+        }
+        phone = new Phone(type, tempString);
+
+        i = 1;
+        tempString = "";
+        type = "";
+
+        std::getline(fin, readString);
+        while (readString[i] != ')') {
+            type += readString[i];
+            i++;
+        }
+        i++;
+        while (readString[i] != '\0') {
+            if (readString[i] != ' ') {
+                tempString += readString[i];
+            }
+            i++;
+        }
+        email = new Email(type, tempString);
+
+
+        fin.close();
+    }
+}
+
+
+bool Person::operator==(const Person& rhs){
+    return (this->f_name == rhs.f_name && this->l_name == rhs.l_name 
+    && this->birthdate == rhs.birthdate);
+}
+
+bool Person::operator!=(const Person& rhs){ 
+    return !(this->operator==(rhs));
+}
+
+
+void Person::print_person(){
+    // Already implemented for you! Do not change!
+	cout << l_name <<", " << f_name << endl;
+	birthdate->print_date("Month D, YYYY");
+    phone->print();
+    email->print();
+}

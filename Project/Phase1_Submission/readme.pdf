@@ -1,0 +1,111 @@
+Will Bradley
+
+wwbradle@usc.edu
+
+3938590901
+
+Teammates: N/a
+
+
+Notes:
+
+    Seems to work properly based on my testing.  Any output that differs from
+    the expected is either something I forgot to remove from debugging or creative
+    liberty I took.  Also, I wasn't sure what we were supposed to do with the
+    search(Person* searchEntry) so this function is untested because it wasn't clear
+    to me what it was for.  It should still work though because it just iterates through
+    the linked list and uses the person comparison operator which I did test and is working.
+
+
+Implementation:
+
+    Date.cpp
+
+        I stored the month, day and year as integers so that I could store strings 
+        of the different month names in a vector and access them using vector[month-1]
+        in the print_date() function. In the constructor I used a series of while loops 
+        to iterate through the different parameters within the input date and append each 
+        number that wasn't a leading 0 to a string representing the month, day or year.  
+        Then I used the built in stoi() function to change the strings to integers and
+        input initialize the date object.
+
+    Person.cpp
+
+        Constructor(filename)
+            Read in person using getline() for fname, lname, date, then used series of while
+            loops to read in type and phone number, as well as type and email number from the
+            file similar to the implementation from date.cpp.
+
+        Constructor(string arguments)
+            For this constructor, I essentially did the same thing as the other one except I
+            prompt the user for the necessary information.
+
+    Network.cpp
+
+        loadDB()
+            First I use a DLL destructor (similar to lab 9) to clear the current network.
+            Then I read in each line and call the person constructor, in a loop and skip
+            the dashed line using getline() and push_front() to add each person to the DLL.
+
+        saveDB()
+            In this function, I open the desired file and print the each element of the DLL 
+            in the specified format, followed by a dashed line.
+
+        push_back()
+            In this function, I set the new element->next to null, then new element->prev to
+            tail.  Then I update the tail to the new element and the count to count + 1.
+
+        search() ? 
+            TA said to ignore, just implement search(firstname, lastname) and 
+            search(Person* searchEntry).
+
+        remove(fname, lname)
+            I use search(fname, lname) to find the person if it exists, and if does,
+            I remove it from the list by re-linking the DLL around the person and 
+            deleting the person.
+
+        destructor
+            I iterate through the DLL, setting a temporary pointer to the head, moving
+            the head to head->next, then deleting the temporary pointer.
+
+        search(Person* searchEntry)
+            Explained in notes.
+
+        search(fname, lname)
+            I iterate through the list and compare the arguments to each person's name,
+            returning a pointer to NULL if none of them match, or a pointer to the first
+            matching person.
+
+        Unconventional implemenations for options:
+
+            option 2:
+                listFiles() is a function that validates the format of each text file in
+                the available directory by checking if the total number of lines/6 is equal
+                to the number of dashed lines.  Then it prints the names of these files.
+
+            option 3:
+                For this option, I just used call remove, then push_front so that if the Person
+                exists, they get removed and readded, and if they don't they get added.  This 
+                does change the order of the list, but that doesn't affect the system.  I did not
+                do this because it was optimal in terms of time complexity, I did it because it
+                was easy.
+
+Testing:
+
+    Makefile:
+        
+        Disclaimer:
+            I do not know how to make a makefile, so I had ChatGPT make me one.  The professor
+            said this was ok as long as I disclosed it in the readme.pdf.  Also there are some
+            warnings about comparison between int and unsigned int, but I have yet to see that
+            cause any bugs.
+        
+        to run:
+            make
+            ./test_network
+
+    Testing Methodology:
+        
+        Used test_person_eq.cpp to test person, contact, and date classes, seemed to work.
+        Used test_network.cpp to test network.cpp and the files listed above.  I cycled
+        through the 5 different options and all of them seemed to be working properly.

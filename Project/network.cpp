@@ -348,6 +348,8 @@ void Network::showMenu(){
                     p1->print_person();
                     cout << endl << endl;
                     p2->print_person();
+                    p1->makeFriend(p2);
+                    p2->makeFriend(p1);
                 }
                 else {
                     cout << "Person not found" << endl;

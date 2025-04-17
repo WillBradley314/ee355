@@ -17,7 +17,6 @@ Person::~Person(){
 
 
 Person::Person(string f_name, string l_name, string b_date, string email, string phone){
-
     string type, tempString;
     int i = 1;
 
@@ -158,11 +157,20 @@ bool Person::operator!=(const Person& rhs){
     return !(this->operator==(rhs));
 }
 
-
 void Person::print_person(){
     // Already implemented for you! Do not change!
 	cout << l_name <<", " << f_name << endl;
 	birthdate->print_date("Month D, YYYY");
     phone->print();
     email->print();
+}
+
+void Person::makeFriend(Person* newFriend){
+    for (int i = 0; i < myfriends.size(); i++) {
+        if (newFriend->operator==(*myfriends[i])) {
+            cout << "Already Friends." << endl;
+            return;
+        }
+    }
+    myfriends.push_back(newFriend);
 }

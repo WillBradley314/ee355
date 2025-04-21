@@ -137,7 +137,13 @@ void Network::saveDB(string filename){
             fout << temp->birthdate->get_dateString() << endl;
             fout << temp->email->get_contact() << endl;
             fout << temp->phone->get_contact() << endl;
+            for (int i = 0; i < temp->myfriends.size(); i++) {
+                fout << temp->myfriends[i]->f_name << endl;
+                fout << temp->myfriends[i]->l_name << endl;
+
+            }
             fout << "--------------------" << endl;
+
             temp = temp->next;
         }
         fout.close();

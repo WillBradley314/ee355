@@ -59,7 +59,34 @@ Person* Network::search(Person* searchEntry) {
     return NULL;
 }
 
+void Network::loadFriends(string filename, Person* currNode) {
+    ifstream fin(filename);
+    string readString, f_name, l_name;
+    if (!fin.is_open()) {
+        cerr << "Unable to open " << filename << "." << endl;
+    }
+    else {
+        while(std::getline(fin, readString)) {
+            for(int i = 0; i < 5; i++) {
+                std::getline(fin, readString);
+            }
+            std::getline(fin, f_name); 
+            while (f_name != "--------------------") {
+                std::getline(fin, l_name);
+                currNode->makeFriend(search(f_name, l_name));
+                
+                std::getline(fin, f_name); 
+            }
 
+        }
+
+
+
+        fin.close();
+    }
+
+    
+}
 
 void Network::loadDB(string filename){
     ifstream fin(filename);
@@ -86,9 +113,12 @@ void Network::loadDB(string filename){
             std::getline(fin, phone);
       
             Person* currNode = new Person(f_name, l_name, dateString, email, phone);
-
             push_front(currNode);
-            std::getline(fin, readString); // skips dashes;
+            
+            std::getline(fin, readString);
+            while(f_name != "--------------------") { // skips friends and dashed line
+                std::getline(fin, readString); 
+            }
         }
         fin.close();
     }

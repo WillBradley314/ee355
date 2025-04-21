@@ -68,7 +68,7 @@ void Network::loadFriends(string filename) {
     }
     else {
         while(std::getline(fin, readString)) {
-            for(int i = 0; i < 5; i++) {
+            for(int i = 0; i < 4; i++) {
                 std::getline(fin, readString);
             }
             std::getline(fin, f_name); 
@@ -78,7 +78,9 @@ void Network::loadFriends(string filename) {
                 
                 std::getline(fin, f_name); 
             }
-            currNode = currNode->next;
+            if (currNode->next != NULL) {
+                currNode = currNode->next;
+            }
         }
         fin.close();
     }
@@ -114,7 +116,7 @@ void Network::loadDB(string filename){
             push_front(currNode);
             
             std::getline(fin, readString);
-            while(f_name != "--------------------") { // skips friends and dashed line
+            while(readString != "--------------------") { // skips friends and dashed line
                 std::getline(fin, readString); 
             }
         }

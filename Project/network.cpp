@@ -59,7 +59,8 @@ Person* Network::search(Person* searchEntry) {
     return NULL;
 }
 
-void Network::loadFriends(string filename, Person* currNode) {
+void Network::loadFriends(string filename) {
+    Person* currNode = head;
     ifstream fin(filename);
     string readString, f_name, l_name;
     if (!fin.is_open()) {
@@ -77,11 +78,8 @@ void Network::loadFriends(string filename, Person* currNode) {
                 
                 std::getline(fin, f_name); 
             }
-
+            currNode = currNode->next;
         }
-
-
-
         fin.close();
     }
 
@@ -121,6 +119,7 @@ void Network::loadDB(string filename){
             }
         }
         fin.close();
+        loadFriends(filename);
     }
 
 }

@@ -21,7 +21,7 @@ class Network{
         Network(string fileName);
         ~Network();
         void loadDB(string filename);
-        void loadFriends(string filename, Person* currNode);
+        void loadFriends(string filename);
         void saveDB(string filename);
         void printDB();
         void push_front(Person* newEntry);

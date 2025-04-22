@@ -3,6 +3,7 @@
 #include "person.h"
 #include "contact.h"
 #include "date.h"
+#include "misc.h"
 
 Person::Person(){
     set_person();
@@ -163,6 +164,10 @@ void Person::print_person(){
 	birthdate->print_date("Month D, YYYY");
     phone->print();
     email->print();
+    for(int i = 0; i < myfriends.size(); i++) {
+        cout << nameToID(myfriends[i]->f_name, myfriends[i]->l_name) << "(" 
+        << myfriends[i]->f_name << " " << myfriends[i]->l_name << ")" << endl;
+    }
 }
 
 bool Person::makeFriend(Person* newFriend){

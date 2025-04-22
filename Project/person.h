@@ -33,7 +33,7 @@ public:
 	void set_person(string filename);
     bool operator==(const Person& rhs);
     bool operator!=(const Person& rhs);
-    void makeFriend(Person* newFriend);
+    bool makeFriend(Person* newFriend);
 };
 
 

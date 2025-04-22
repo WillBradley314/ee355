@@ -165,12 +165,12 @@ void Person::print_person(){
     email->print();
 }
 
-void Person::makeFriend(Person* newFriend){
+bool Person::makeFriend(Person* newFriend){
     for (int i = 0; i < myfriends.size(); i++) {
         if (newFriend->operator==(*myfriends[i])) {
-            cout << "Already Friends." << endl;
-            return;
+            return true;
         }
     }
     myfriends.push_back(newFriend);
+    return false;
 }

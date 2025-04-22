@@ -22,6 +22,7 @@ private:
     Person* next;
     Person* prev;
     vector<Person*> myfriends;
+    string ID;
 
 public: 
     Person();
@@ -34,6 +35,7 @@ public:
     bool operator==(const Person& rhs);
     bool operator!=(const Person& rhs);
     bool makeFriend(Person* newFriend);
+    void print_friends();
 };
 
 

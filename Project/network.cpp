@@ -113,7 +113,7 @@ void Network::loadDB(string filename){
             std::getline(fin, phone);
       
             Person* currNode = new Person(f_name, l_name, dateString, email, phone);
-            push_front(currNode);
+            push_back(currNode);
             
             std::getline(fin, readString);
             while(readString != "--------------------") { // skips friends and dashed line
@@ -243,25 +243,9 @@ void listFiles() {
     cout << "Networks:" << endl;
     for (const auto& file: fs::directory_iterator(".")) {
         string name = file.path().filename().string();
-        vector<string> lines;
         if (name.size() > 5 && name.substr(name.size()-4) == ".txt") {
-            string line;
-            int nDash(0);
-            ifstream fin(name);
-            if (fin.is_open()) {
-                while(std::getline(fin, line)) {
-                    lines.push_back(line);
-                    if(line == "--------------------") {
-                        nDash++;
-                    }
-                }
-                if (lines.size()/6 == nDash  && nDash) {
-                    cout << name << endl;
-                }
-                fin.close(); 
-            }
+            cout << name << endl;
         }
-
     }
 
 }
@@ -374,6 +358,11 @@ void Network::showMenu(){
                 cout << "Person not found" << endl;
             }
             else {
+                if (p1->myfriends.size() > 0) {
+                    cout << endl <<  "Current friends of ";
+                    p1->print_friends();
+                    cout << endl;
+                }   
                 cout << "Person 2" << endl;
                 cout << "First Name: ";
                 getline(cin, fname);

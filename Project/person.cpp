@@ -23,6 +23,7 @@ Person::Person(string f_name, string l_name, string b_date, string email, string
 
     this->f_name = f_name;
     this->l_name = l_name;
+    this->ID = nameToID(f_name, l_name);
     this->birthdate = new Date(b_date);
     
     while (email[i] != ')' && i < email.size()) {
@@ -77,6 +78,8 @@ void Person::set_person(){
 	cout << "Last Name: ";
     std::getline(std::cin,l_name);
 
+    ID = nameToID(f_name, l_name);
+
     cout << "Birthdate (M/D/YYYY): ";
     std::getline(std::cin,temp);
     birthdate = new Date(temp); 
@@ -107,7 +110,8 @@ void Person::set_person(string filename){
         
         std::getline(fin,f_name);
         std::getline(fin,l_name);
-        
+        ID = nameToID(f_name, l_name);
+
         std::getline(fin,dateString);
         birthdate = new Date(dateString);
 
@@ -178,4 +182,28 @@ bool Person::makeFriend(Person* newFriend){
     }
     myfriends.push_back(newFriend);
     return false;
+}
+
+void Person::print_friends() {
+    Person* temp;
+    for (int i = 0; i < myfriends.size(); i++) {
+        for (int j = 0; j < myfriends.size()-1; j++) {
+            if(myfriends[j]->ID[0] > myfriends[j+1]->ID[0]) {
+                temp = myfriends[j];
+                myfriends[j] = myfriends[j+1];
+                myfriends[j+1] = temp;
+            }
+            else if (myfriends[j]->ID[0] == myfriends[j+1]->ID[0]) {
+                if (myfriends[j]->ID[1] > myfriends[j+1]->ID[1]) {
+                    temp = myfriends[j];
+                    myfriends[j] = myfriends[j+1];
+                    myfriends[j+1] = temp;
+                }
+            }
+        }
+    }
+    cout << f_name << ", " << l_name << endl << "--------------------------------" << endl;
+    for (int i = 0; i < myfriends.size(); i++) {
+        cout << myfriends[i]->f_name << ", " << myfriends[i]->l_name << endl;
+    }
 }

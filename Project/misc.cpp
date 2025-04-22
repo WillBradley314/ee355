@@ -24,7 +24,7 @@ string nameToID(string f_name, string l_name) {
             ID += f_name[i];
         }
     }
-    for(int i = 0; i < f_name.size(); i++) {
+    for(int i = 0; i < l_name.size(); i++) {
         l_name[i] = tolower(l_name[i]);
         if(l_name[i] != ' ') {
             ID += l_name[i];

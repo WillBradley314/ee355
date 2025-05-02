@@ -1,0 +1,19 @@
+Will Bradley
+
+wwbradle@usc.edu
+
+3938590901
+
+
+
+Notes:
+
+    Everything working and tested.
+
+To Compiile and Run:
+
+    solution1.cpp (Resource Ordering):
+        g++ -std=c++11 -pthread solution1.cpp -o solution1 && ./solution1
+
+    solution2.cpp (Asymmetrical Behavior):
+        g++ -std=c++11 -pthread solution2.cpp -o solution2 && ./solution2
